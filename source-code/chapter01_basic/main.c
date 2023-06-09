@@ -20,7 +20,7 @@ void youxianji(){
 }
 
 int const_basic(){
-
+    // int 与 const int 的区别，const在
     printf("begin\n");
     const int AMOUNT = 100;
     printf("**********************************\n");
