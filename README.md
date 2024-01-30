@@ -1,15 +1,16 @@
 # <center> C语言快速查询
 **在这里首先鸣谢黑马教育全体教师及工作人员，让我能够免费享受这些资源；感谢浙大翁恺老师细致的讲解；还有 C Primer Plus的作者写出如此优秀的书籍！**
+
 ## 大纲
 
 > 1. 本笔记规范
-> 
 > 2. 第一章  编译与链接
-> 
-> 3. 第二章  
->
-> 4. 第三章  分支结构
-> 4. 第五章  函数
+> 3. 第二章  数据类型、运算符与表达式
+> 4. 第三章  选择与循环
+> 5. 第五章  数组
+> 6. 第六章 指针
+> 7. 结构体与链表
+> 8. 常用数据结构与算法
 
 ## 本笔记规范
 
@@ -20,6 +21,14 @@
 ## 第一章 编译与链接
 
 gcc -o hello.c ； 
+
+预处理
+
+编译
+
+汇编
+
+链接
 
 ## 第二章 
 
@@ -79,8 +88,8 @@ switch-case
     函数声明形参可以只写类型void fun（int,int） 
 
 ### return 和 exit 区别
-    return 是结束当前函数；
-    exit 是库函数，结束整个程序，无论在子函数还是主函数，调用exit都会结束程序；
+    return() 是结束当前函数；
+    exit() 是库函数，结束整个程序，无论在子函数还是主函数，调用exit都会结束程序；
 ### 分文件编程
      采用头文件声明，再include头文件
      防止头文件多次包含
@@ -94,7 +103,7 @@ switch-case
      #define _STDIO_H
      // 省略了文件的内容
      #endif
-    
+
 或者 **#pragma once**
 
      需要注意的是，只有在大多数编译器中都支持该指令的情况下才能使用，因为并非所有的编译器都支持该指令。
@@ -107,7 +116,6 @@ switch-case
 
     指针就是内存编号； 
     指针变量：存指针（地址）的变量，32位操作系统，指针类型p的大小为4字节。
-        
 
 
 
@@ -119,6 +127,59 @@ switch-case
 
 
 
+## 第七章 结构体与链表
+
+
+
+
+
+### 链表
+
+```
+单向链表：最后指向NULL
+单向循环链表： 最后指向首部
+双向链表：一个数据域两个指针域
+```
+
+```c
+#include <stdio.h>//头文件引用
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct node_s {
+	int val;
+	struct node_s* next;
+
+}Node;
+
+Node* add_to_list(Node* list, int val);
+
+int main()//主函数
+{
+	Node* head = NULL; // 这是头部的节点。所谓的节点就是一头部结构体的指针
+	head = add_to_list(head, 1);
+	head = add_to_list(head, 2);
+	head = add_to_list(head, 3);
+	head = add_to_list(head, 4);
+
+	system("pause");//暂停函数
+	return 0;//返回到主程序
+}
+
+Node* add_to_list(Node* list, int val) {
+	Node* newNode = (Node*)malloc(sizeof(Node));
+	if (newNode == NULL)
+	{
+		printf("Error : malloc failed in add_to_list.\n");
+		exit(1);
+	}
+	//头插法
+	newNode->val = val;
+	newNode->next = list;
+
+	return newNode;
+}
+```
 
 
 
